@@ -1,4 +1,4 @@
-# vacation_climate_analysis
+# vacation_climate_analysis 
 %matplotlib inline
 from matplotlib import style
 style.use('fivethirtyeight')
