@@ -24,3 +24,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 # We can view all of the classes that automap found
 Base.classes.keys()
+
+# Save references to each table
+Measurement = Base.classes.measurement
+Station = Base.classes.station
