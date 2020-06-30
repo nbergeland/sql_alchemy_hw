@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-import datetime as dt
+import datetime as dt 
 
 #Reflect Tables into SQLAlchemy ORM
 # Python SQL toolkit and Object Relational Mapper
