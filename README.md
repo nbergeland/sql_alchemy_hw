@@ -136,7 +136,7 @@ print(calc_temps('2012-02-28', '2012-03-05'))
 def daily_normals(date):
     """Daily Normals.
     
-    Args:
+    Args: 
         date (str): A date string in the format '%m-%d'
         
     Returns:
