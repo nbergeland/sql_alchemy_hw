@@ -22,3 +22,5 @@ engine = create_engine("sqlite:////Users/price/PycharmProjects/berg/hawaii.sqlit
 Base = automap_base()
 # reflect the tables
 Base.prepare(engine, reflect=True)
+# We can view all of the classes that automap found
+Base.classes.keys()
