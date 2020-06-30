@@ -148,4 +148,3 @@ def daily_normals(date):
     return session.query(*sel).filter(func.strftime("%m-%d", Measurement.date) == date).all()
     
 daily_normals("01-01")
-
