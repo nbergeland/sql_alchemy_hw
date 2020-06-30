@@ -97,6 +97,55 @@ session.query(Measurement).distinct(Measurement.station).group_by(Measurement.st
 # List the stations and the counts in descending order.
 session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).all()
 
- Using the station id from the previous query, calculate the lowest temperature recorded, 
+#Using the station id from the previous query, calculate the lowest temperature recorded, 
 # highest temperature recorded, and average temperature of the most active station?
+# Choose the station with the highest number of temperature observations.
+# Query the last 12 months of temperature observation data for this station and plot the results as a histogram
+
+# This function called `calc_temps` will accept start date and end date in the format '%Y-%m-%d' 
+# and return the minimum, average, and maximum temperatures for that range of dates
+def calc_temps(start_date, end_date):
+    """TMIN, TAVG, and TMAX for a list of dates.
+    
+    Args:
+        start_date (string): A date string in the format %Y-%m-%d
+        end_date (string): A date string in the format %Y-%m-%d
+        
+    Returns:
+        TMIN, TAVE, and TMAX
+    """
+    
+    return session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
+
+# function usage example
+print(calc_temps('2012-02-28', '2012-03-05'))
+
+# Use your previous function `calc_temps` to calculate the tmin, tavg, and tmax 
+# for your trip using the previous year's data for those same dates.
+# Plot the results from your previous query as a bar chart. 
+# Use "Trip Avg Temp" as your Title
+# Use the average temperature for the y value
+# Use the peak-to-peak (tmax-tmin) value as the y error bar (yerr)
+# Calculate the total amount of rainfall per weather station for your trip dates using the previous year's matching dates.
+# Sort this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation
+
+# Create a query that will calculate the daily normals 
+# (i.e. the averages for tmin, tmax, and tavg for all historic data matching a specific month and day)
+
+def daily_normals(date):
+    """Daily Normals.
+    
+    Args:
+        date (str): A date string in the format '%m-%d'
+        
+    Returns:
+        A list of tuples containing the daily normals, tmin, tavg, and tmax
+    
+    """
+    
+    sel = [func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)]
+    return session.query(*sel).filter(func.strftime("%m-%d", Measurement.date) == date).all()
+    
+daily_normals("01-01")
 
