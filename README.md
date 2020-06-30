@@ -28,3 +28,13 @@ Base.classes.keys()
 # Save references to each table
 Measurement = Base.classes.measurement
 Station = Base.classes.station
+
+print(str(Measurement.__table__.columns))
+print(str(Station.__table__.columns))
+
+# Create our session (link) from Python to the DB
+session = Session(engine)
+
+precip = session.query(Measurement)
+for p in precip:
+    print(p.id) 
