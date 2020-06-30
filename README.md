@@ -96,3 +96,7 @@ session.query(Measurement).distinct(Measurement.station).group_by(Measurement.st
 # What are the most active stations? (i.e. what stations have the most rows)?
 # List the stations and the counts in descending order.
 session.query(Measurement.station, func.count(Measurement.station)).group_by(Measurement.station).all()
+
+ Using the station id from the previous query, calculate the lowest temperature recorded, 
+# highest temperature recorded, and average temperature of the most active station?
+
